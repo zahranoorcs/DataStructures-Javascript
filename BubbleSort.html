@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bubble Sort</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Bubble SOrt Algorithm with Time complexity : O(n^2)
+	function bubbleSort(array, len){
+		for(var i=0; i<len-1; i++){
+			for(var j=0; j<len-i; j++){
+				if(array[j]> array[j+1]){
+					swap(array, j, j+1);
+				}
+			}
+		}
+		return array;
+	}
+	// Swap Method
+	function swap(array, index1, index2){
+		var temp = array[index1];
+		array[index1] = array[index2];
+		array[index2] = temp;
+		return array;
+	}
+	var array = [50,40,30,20,10];
+	var n = array.length;
+	var result = bubbleSort(array, n);
+	console.log(result);
+</script>
+</body>
+</html>

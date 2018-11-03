@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Recursive Selection Sort</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Selection SOrt
+	function selectionsort(array, i, n){
+		var min = i;
+	if(i == n) {
+		return array;
+	}
+	for(var j = i+1; j< array.length; j++){
+		if(array[min]> array[j]){
+			min = j;
+		}
+	}
+	swap(array, min, i);
+
+	return selectionsort(array, i+1, n);
+
+	}
+	// Swap Method
+	function swap(array, index1, index2){
+		var temp = array[index1];
+		array[index1] = array[index2];
+		array[index2] = temp;
+		return array;
+	}	
+	var result = selectionsort([5,4,3,2,1], 0, 5);
+	console.log(result);
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Queue</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Queue Contructor
+	function Queue(){
+		this.items=[];
+		this.numOfElem=0;
+	}
+	Queue.prototype.enqueue = function(value){
+		this.items.push(value);
+		this.numOfElem++;
+	}
+	Queue.prototype.dequeue = function(){
+		if(this.numOfElem==0){
+			return "queue is empty";
+		}
+		this.numOfElem--;
+		return this.items.shift();
+	}
+	var q = new Queue();
+	q.enqueue(1);
+	q.enqueue(2);
+	q.enqueue(3);
+	q.enqueue(4);
+	q.enqueue(5);
+	q.enqueue(6);
+	q.enqueue(7);
+	q.enqueue(8);
+    q.dequeue();
+
+</script>
+</body>
+</html>

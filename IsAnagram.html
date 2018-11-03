@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Are two strings Anagrams?</title>
+</head>
+<body>
+<script type="text/javascript">
+// Two strings are anagrams if they have exact same characters e.g (eat and tea), (geeks, keegs and skeeg).
+// Time complexity depends on the sorting technique used. If we use quickSort, it may be O(n^2) in worst case. If we use a O(nLogn) sorting algorithm like   merge sort, then the complexity becomes O(nLogn). In this method I have used the JS builtin method for sorting. 
+
+function isAnagram(string1, string2){
+	var lenstr1 = string1.length;
+	var lenstr2 = string2.length;
+	if(lenstr1 != lenstr2){
+		return false;
+	}
+	var sortedStr1 = string1.split('').sort().join('');
+	var sortedStr2 = string2.split('').sort().join('');
+	if(sortedStr1 == sortedStr2){
+		console.log("Strings are Anagrams");
+	}
+	else{
+		console.log("Strings are not Anagrams");
+	}
+}
+
+isAnagram("geeks","keegs");
+</script>
+</body>
+</html>

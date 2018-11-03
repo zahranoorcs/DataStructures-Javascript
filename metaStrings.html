@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Check if two strings are meta strings</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Meta strings are the strings which can be made equal by exactly one swap in any of the strings.
+	// Solution: If both strings are not of equal length, return false
+	// If unmatched character count is more than 2, return false
+	// Don't forget to keep track of indexes of unmatched characters
+	// Check if both strings are equal by swapping or by the following method:
+
+	function isMetaString(string1, string2){
+		if(string1.length != string2.length){
+			return false;
+		}
+		var count=0;
+		var current = -1;
+		var previous = -1;
+		for(var i=0; i<string1.length; i++){
+			if(string1[i]!=string2[i]){
+				previous = current;
+				current = i;
+				count++;
+			}
+		}
+		if(count>2){
+			return false;
+		}
+		if(string1[current]==string2[previous] && string2[current]==string1[previous]){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	var result = isMetaString("geeks","keegs");
+	console.log(result);
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Graphs</title>
+</head>
+<body>
+<script type="text/javascript">
+	function Graph(){
+		this.vertices=[];
+		this.edges=[];
+		this.noofVertices=0;
+		this.noofEdges=0;
+	}
+	Graph.prototype.addVertex=function(vertex){
+		this.vertices.push(vertex);
+		this.noofVertices++;
+		this.edges[vertex]=[];
+	}
+	Graph.prototype.addEdge=function(vertex1, vertex2){
+		this.edges[vertex1].push(vertex2);
+		this.edges[vertex2].push(vertex1);
+		this.noofEdges++;
+	}
+	Graph.prototype.removeVertex=function(vertex){
+		var index = this.vertices.indexOf(vertex);
+		if(index!=undefined){
+			this.vertices.splice(index,1);
+		}
+		this.noofVertices--;
+		// var adjacentList = this.edges[vertex];
+		// for(var i=0; i<adjacentList.length;i++){
+		// 	var adjacentElement = adjacentList[i];
+		// 	this.removeEdge(adjacentElement, vertex);
+		// }
+
+		while(this.edges[vertex].length!=0){
+			var adjacentElement = this.edges[vertex].pop();
+			this.removeEdge(adjacentElement, vertex);
+		}
+	}
+	Graph.prototype.removeEdge=function(vertex1,vertex2){
+		var index1 = this.edges[vertex1] ? this.edges[vertex1].indexOf(vertex2) : -1;
+		var index2 = this.edges[vertex2] ? this.edges[vertex2].indexOf(vertex1) : -1;
+
+		// if(index1!= undefined){
+		// 	this.edges[vertex1].splice(index1,1);
+		// }
+		// if(index2!= undefined){
+		// 	this.edges[vertex2].splice(index2,1);
+		// }
+		// this.noofEdges--;
+
+ 
+				if(~index1) {
+		    this.edges[vertex1].splice(index1, 1);
+		    this.numberOfEdges--;
+		  }
+		  if(~index2) {
+		    this.edges[vertex2].splice(index2, 1);
+		  }
+			}
+
+    Graph.prototype.DFSTraversal=function(startingNode){
+    	
+    	var visited=[];
+    	for(var i=0; i<this.noofVertices; i++){
+    		visited[i]=0;
+    	}
+    	this.DFSUtil(startingNode, visited);
+    }
+
+    Graph.prototype.DFSUtil = function(node,visited){
+       visited[node]=1;
+       console.log(node);
+
+       var adjacentNeighbor = this.edges[node];
+       for(var i=0; i<adjacentNeighbor.length; i++){
+       	var firstElement = adjacentNeighbor[i];
+       	if(!visited[firstElement]){
+       		this.DFSUtil(firstElement, visited);
+       	}
+       }
+    }
+
+	var graph = new Graph();
+	graph.addVertex(2);
+	graph.addVertex(3);
+	graph.addVertex(4);
+	graph.addVertex(5);
+	graph.addEdge(2,3);
+	graph.addEdge(2,4);
+	graph.addEdge(2,5);
+	graph.addEdge(4,5);
+	graph.addEdge(4,3);
+	graph.removeVertex(2);
+	graph.DFSTraversal(3);
+
+
+</script>
+</body>
+</html>

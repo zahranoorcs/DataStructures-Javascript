@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Find the Number Occurring Odd Number of Times using hash map. </title>
+</head>
+<body>
+<script type="text/javascript">
+	// Find the Number Occurring Odd Number of Times using hash map.
+	// Time Complexity:O(n)
+	function oddoccurance(array){
+		var map={};
+		for(var i=0; i<array.length; i++){
+			if(map[array[i]]==undefined){
+				map[array[i]]=1;
+			}
+			else{
+				map[array[i]]=map[array[i]]+1;
+			}
+		}
+
+		for(var j in map){
+			if(map[j]%2 !== 0){
+				return map[j];
+			}
+		}
+	}
+	var result = oddoccurance([1,2,3,2,3,2]);
+	console.log(result);
+</script>
+</body>
+</html>

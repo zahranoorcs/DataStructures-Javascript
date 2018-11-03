@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>String Compression</title>
+</head>
+<body>
+<!-- Implement a method to perform basic string compression using the counts of repeated characters. 
+For example the string "aabcccccaaa" would become a2b1c5a3. If the compressed string would not become smaller than the original string, your method should return the original string. 
+you can assume that the string has only uppercase and lowercase letters -->
+
+<script type="text/javascript">
+	function compressString(string){
+		var compressedString="";
+		var count=0;
+		
+		for(var i=0; i<=string.length-1; i++){
+			if(string[i]==string[i+1]){
+				count++;
+			}
+			else{ 
+				count++;
+				compressedString = compressedString+string[i]+count;
+				count=0;
+			}
+		}
+	return compressedString;
+	}
+
+	var string1 = "aabcccccaaad"
+	var lenString1=string1.length;
+	var result = compressString(string1);
+	var lengthResult = result.length;
+	if(lengthResult<lenString1){
+		console.log(result);
+	}
+	else{
+		console.log(string1);
+	}
+	// console.log(result);
+
+</script>
+</body>
+</html>

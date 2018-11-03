@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Find missing number by XOR Method.</title>
+</head>
+<body>
+<script type="text/javascript">
+		// Find one missing number from an array by using XOR Method
+
+	function find(array){
+		var xorArray = array[0];
+		var xorRange = 1;
+		for(var i = 1; i<array.length; i++){
+			xorArray = xorArray ^ array[i];
+		}
+		for(var j = 2; j<=array.length+1; j++){
+			xorRange = xorRange ^ j;
+		}
+		var missingNum = xorRange ^ xorArray;
+		return missingNum;
+	}
+	var result = find([1,2,3,5,6,7,8]);
+	console.log(result);
+</script>
+</body>
+</html>

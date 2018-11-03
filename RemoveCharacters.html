@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Remove 'b' and 'ac' from a string in one go and without extra space.</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Remove 'b' and 'ac' from a string in one go and without extra space.
+	// Solution: Initialize two variables to 0; One for keeping track of characters to store new values into the string and the other to one will traverse to the end of string.
+	// Case 1: If character is "a" and next character is "c", j+=2
+	// Case 2: If character is "b", j++
+	// Case 3: If current element is "c" and last element in output is "a", i-- and j++;
+	// Else, add characters in the string.
+	// Splice/cut rest of the string
+	function removeCharacters(string){
+		var i = 0;
+		var j = 0;
+		var splittedString = string.split("");
+		while(j<string.length){
+			//Case 1
+			if(i<string.length-1 && splittedString[j]=="a" && splittedString[j+1]=="c"){
+				j+=2;
+			}
+			// Case 2
+			else if(splittedString[j]=="b"){
+				j++;
+			}
+			// Case 3
+			else if(i>=0 && splittedString[j]=="c" && splittedString[i-1]=="a"){
+				j++;
+			}
+			else{
+				splittedString[i]=splittedString[j];
+				i++;
+				j++;
+			}
+		}
+		var joinedString = splittedString.join("").slice(0,i);
+		var finalString = joinedString.slice(0,i);
+		return finalString;
+	}
+
+	var string = "abcacbaddefg";
+	var result = removeCharacters(string);
+	console.log(result);
+</script>
+</body>
+</html>

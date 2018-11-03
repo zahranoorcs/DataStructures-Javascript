@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Find Odd Occurance using XOR method.</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// This method can be used only when one number has odd occurance
+		function oddoccurance(array){
+			var result = 0;
+			for(var i=0; i<array.length; i++){
+				result = result ^ array[i];
+			}
+			return result;
+		}
+
+		var odd=oddoccurance([1,1,2,3,2,4,4,3,2]);
+	    console.log(odd);
+	</script>
+</body>
+</html>

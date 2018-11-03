@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QuickSort</title>
+</head>
+<body>
+<script type="text/javascript">
+	function partition(array, low, high){
+       var pivot=array[high];
+       var index = low;
+       for(var i=low;i<high;i++){
+       	if(array[i]<= pivot){
+       		swap(array,i,index);
+       		index++;
+       	}
+       }
+       	swap(array,index,high);
+       return index;
+	}
+	function quickSort(array, low, high){
+		if(low<high){
+		   var pIndex=partition(array, low, high);
+			quickSort(array, low, pIndex-1);
+			quickSort(array, pIndex+1, high);
+		}		
+	}
+	function swap(array, index1, index2){
+		var temp;
+	    temp = array[index1];
+		array[index1]= array[index2];
+		array[index2]=temp;
+		
+	}
+	var array = [7,2,1,6,8,5,3,4];
+	var n=array.length;
+	quickSort(array, 0, 7);
+</script>
+</body>
+</html>

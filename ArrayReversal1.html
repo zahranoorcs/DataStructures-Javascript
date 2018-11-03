@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array Reversal</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Reverse an array
+	// Solution: Here we will use Swapping to reverse an array.
+	function arrayReversal(array, len){
+		var low = 0;
+		var high = len-1;
+		while(low<high){
+			
+			swap(array, low, high);
+			
+			low++;
+			high--;
+		}
+		return array;
+	}
+	// Swap Method
+	function swap(array, index1, index2){
+		var temp = array[index1];
+		array[index1] = array[index2];
+		array[index2] = temp;
+		return array;
+	}	
+
+	var array=[1,2,3,4,5];
+	var n=array.length;
+	var result = arrayReversal(array,n);
+	console.log(result);
+</script>
+</body>
+</html>

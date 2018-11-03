@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array Rotation</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Rotate array by d number of elmenets
+	// Solution 2: Store first element in the temp variable
+	// Shift rest of the array
+	// Repeat
+	// Time Complexity: O(n*d)
+	// Space Complexity: O(1)
+
+	function arrayRotation(array, d, n){
+		for(var i=0; i<d; i++){
+			var temp = array[0];
+			for(var j=1; j<n; j++){
+				array[j-1]=array[j];
+			}
+			array[n-1]=temp;
+		}
+		return array;
+	}
+
+	var array=[1,2,3,4,5,6,7];
+	var d = 2;
+	var len=array.length;
+	var result = arrayRotation(array, d, len);
+	console.log(result);
+</script>
+</body>
+</html>

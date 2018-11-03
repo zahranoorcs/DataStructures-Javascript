@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sorted array to BST</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Array to BST: Given a sorted array. Write a function that creates a Balanced Binary Search Tree using array elements.
+function createBST(array, low, high){
+    if(low>high){
+    	return;
+    }
+	var mid = parseInt(low+(high-low)/2);
+    var node = new Node(array[mid]);
+    node.left = createBST(array, low, mid-1);
+    node.right = createBST(array, mid+1, high);
+    return node;
+}
+// New node constructor
+	function Node(value){
+		this.data = value;
+		this.left=null;
+		this.right=null;
+	}
+
+var array = [5,10,15,20,25,30,35,40];
+var n = array.length;
+var result = createBST(array, 0, n-1);
+console.log(result);
+</script>
+</body>
+</html>

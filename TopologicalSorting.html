@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Topological Sorting</title>
+</head>
+<body>
+<script type="text/javascript">
+	//Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge uv, vertex u comes before v in the ordering. Topological Sorting for a graph is not possible if the graph is not a DAG.
+
+	//We can modify DFS to find Topological Sorting of a graph. In DFS, we start from a vertex, we first print it and then recursively call DFS for its adjacent vertices. In topological sorting, we use a temporary stack. We don’t print the vertex immediately, we first recursively call topological sorting for all its adjacent vertices, then push it to a stack. Finally, print contents of stack. Note that a vertex is pushed to stack only when all of its adjacent vertices (and their adjacent vertices and so on) are already in stack.
+
+	// Note: This is directed graph and addEdge function is modified accordingly
+
+	// For topological sorting graph, we need addVertex and addEdge methods
+	function Graph(){
+		this.vertices=[];
+		this.edges=[];
+		this.noofVertices=0;
+		this.noofEdges=0;
+	}
+	Graph.prototype.addVertex=function(vertex){
+		this.vertices.push(vertex);
+		this.noofVertices++;
+		this.edges[vertex]=[];
+	}
+	// Modfifying addEdge function
+	Graph.prototype.addEdge=function(vertex1, vertex2){
+		this.edges[vertex1].push(vertex2);
+		// this.edges[vertex2].push(vertex1);
+		this.noofEdges++;
+	}
+
+	// For topological sorting, we need stacke and we need push & pop functions for it. We also need size function for stack.
+	var Stack = function() {
+	    this.count = 0;
+	    this.storage = {};
+	}
+	Stack.prototype.push = function(value) {
+	    this.storage[this.count] = value;
+	    this.count++;
+	}
+	Stack.prototype.pop = function() {
+	    // Check to see if the stack is empty
+	    if (this.count === 0) {
+	        return undefined;
+	    }
+	    this.count--;
+	    var result = this.storage[this.count];
+	    delete this.storage[this.count];
+	    return result;
+	}
+	// Returns the length of the stack
+	Stack.prototype.size = function() {
+	    return this.count;
+	}
+
+	// Topological Sorting
+	Graph.prototype.topologicalSort=function(){
+		var stack = new Stack;
+	    var visited = [];
+	    for(var i=0; i< this.noofVertices;i++){
+	    	visited[i]=false;
+	    }
+
+	    for(var i=0; i<this.vertices.length; i++){
+	    	if(visited[i]==false){
+	    		this.topologicalSortUtil(i, visited, stack);
+	    	}
+	    }
+	    var temp =[];
+	    var k=0;
+	    while(stack.count!=0){
+	    	temp[k] = stack.pop();
+	    	k++;
+	    }
+	    console.log(temp);
+	    return temp;
+	}
+	
+	    
+	  Graph.prototype.topologicalSortUtil=function(vertex, visited, stack){
+	  	visited[vertex]=true;
+		var getNeighbors = this.edges[vertex];
+		for(var j=0; j<getNeighbors.length; j++){
+			// index = j;
+			if(!visited[getNeighbors[j]]){
+				this.topologicalSortUtil(getNeighbors[j], visited, stack);
+			}
+		}
+
+		stack.push(vertex);
+	  }
+
+	var graph = new Graph();
+	graph.addVertex(0);
+	graph.addVertex(1);
+	graph.addVertex(2);
+	graph.addVertex(3);
+	graph.addVertex(4);
+	graph.addVertex(5);
+	graph.addEdge(5,2);
+	graph.addEdge(5,0);
+	graph.addEdge(4,0);
+	graph.addEdge(4,1);
+	graph.addEdge(2,3);
+	graph.addEdge(3,1);
+	graph.topologicalSort();
+
+</script>
+</body>
+</html>

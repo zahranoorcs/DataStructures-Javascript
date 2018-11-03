@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Binary Representation</title>
+</head>
+<body>
+<script type="text/javascript">
+	function binaryRep(num){
+		var string = "" ; 
+		while(num>0){
+			var remainder = num%2;
+			string = string+remainder;
+			num = parseInt(num/2);
+		}
+		return string.split("").reverse().join("");
+	}
+
+	// Driver function
+	// You can change the number passed to binaryRep to test results
+	var result = binaryRep(31);
+	console.log(result);
+
+</script>
+</body>
+</html>

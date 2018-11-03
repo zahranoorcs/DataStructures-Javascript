@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sparse Search</title>
+</head>
+<body>
+<script type="text/javascript">
+    function sparseSearch(array,high,low, word){
+        var len = array.length;
+        var mid = parseInt(low+(high-low)/2);
+        if(array[mid] == ""){
+            var right = mid+1;
+            var left = mid-1;            
+
+            while(true){
+                if(left<low && right>high){
+                return false;
+                }
+                if(left>low && array[left]!= ""){
+                    mid = left;
+                    break;
+                }
+                if(right<high && array[right]!= ""){
+                    mid = right;
+                    break;
+                }
+                left--;
+                right++;
+            } 
+        }   
+     if(array[mid]==word){
+        return mid;
+     }
+     else if(array[mid]>word){
+        return sparseSearch(array, mid-1, low, word);
+     }
+     else{
+        return sparseSearch(array, high, mid+1, word);
+     }
+        
+    }
+    var array = ["","ball","","","","car","","","","eat","","",""];
+    var n = array.length;
+    var string = "eat";
+    var result = sparseSearch(array,n-1,0,string);
+    console.log(result);
+</script>
+</body>
+</html>

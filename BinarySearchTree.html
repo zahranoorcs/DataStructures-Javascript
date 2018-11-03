@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>First question in Book</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Binary search tree constructor
+	function BST(){
+		this.root=null;
+	}
+	// New node constructor
+	function Node(value){
+		this.data = value;
+		this.left=null;
+		this.right=null;
+	}
+	//Insertion
+	BST.prototype.insert=function(value){
+		var current = this.root;
+		var node = new Node(value);
+		if(current==null){
+			this.root = node;
+		}
+		else{
+			while(current){
+
+				if(value < current.data){
+					if(current.left==null){
+						current.left=node;
+						break;
+					}
+					current=current.left;
+				}
+			else if(value > current.data){
+				if(current.right==null){
+					current.right=node;
+					break;
+				}
+				current=current.right;
+			}
+			else if(value==current.data){
+				return "node already exists";
+			}
+			}
+			
+		}
+	}
+	//search node
+	BST.prototype.search=function(value){
+		var current=this.root;
+		if(this.root==null){
+			return "tree is empty";
+		}
+		while(current){
+			if(value==current.data){
+				return true;
+			}
+			else if(value<current.data){
+				current=current.left;
+			}
+			else if(value>current.data){
+				current=current.right;
+			}
+		}
+		return false;
+	}
+	//Inorder traversal
+	var PreorderArray=[];
+	BST.prototype.preorder = function(node){
+		console.log(node.data);
+		PreorderArray.push(node.data);
+		if(node.left){
+			this.preorder(node.left);
+		}
+		if(node.right){
+			this.preorder(node.right);
+		}
+	}
+	//Preorder traversal
+	var InorderArray=[];
+	BST.prototype.inorder = function(node){
+		if(node.left){
+			this.inorder(node.left);
+		}
+		InorderArray.push(node.data);
+		console.log(node.data);
+		if(node.right){
+			this.inorder(node.right);
+		}
+		return InorderArray;
+	}
+	//Postorder Traversal
+		var PostorderArray=[];
+	    BST.prototype.postorder = function(node){
+		if(node.left){
+			this.postorder(node.left);
+		}
+		if(node.right){
+			this.postorder(node.right);
+		}
+		PostorderArray.push(node.data);
+		console.log(node.data);
+	}
+	//Find maximum node
+	BST.prototype.maxNode = function(node){
+		while(node.right){
+			node = node.right;
+		}
+		console.log("maximum node is:" + node.data);
+	}
+	//Find minimum node
+	BST.prototype.minNode = function(node){
+		while(node.left){
+			node = node.left;
+		}
+		console.log("minimum node is:" + node.data);
+	}
+	var bst = new BST();
+	bst.insert(30);
+	bst.insert(10);
+	bst.insert(50);
+	bst.insert(15);
+	bst.insert(5);
+	console.log(bst);
+	var result = bst.search(30);
+	console.log(result);
+	console.log("Preorder Traversal:")
+	bst.preorder(bst.root);
+	console.log("Inorder Traversal:")
+	// console.log(PreorderArray);
+	bst.inorder(bst.root);
+	console.log("Postorder Traversal:")
+	// console.log(InorderArray);
+	bst.postorder(bst.root);
+	// console.log(PostorderArray);
+	bst.maxNode(bst.root);
+	bst.minNode(bst.root);
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Remove Duplicates from Sorted Array(Method1 with auxiliary Space)</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Remove duplicates from sorted array
+
+	function removeDuplicates(array){
+		var temp = [];
+		var j = 0;
+		for(var i=0; i<array.length-1;i++){
+			if(array[i]!=array[i+1]){
+				temp[j]=array[i];
+				j++
+			}
+			//save the value of last index whether it is duplicated or not.
+			temp[j]=array[array.length-1];
+		}
+
+		//copy all elements from temp to original array
+		for(var i=0; i<temp.length; i++){
+			array[i]=temp[i];
+		}
+		var updatedArray = array.splice(0,j+1);
+		return updatedArray;
+	}
+    var result = removeDuplicates([1,1,2,2,2,3,4,4,5,6,7,7,8,8,8]);
+    console.log(result);
+    // Note: You can remove duplicate using hash tables when the array is not sorted.
+</script>
+</body>
+</html>

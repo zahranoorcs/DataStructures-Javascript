@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Selection Sort</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Selection Sort
+	function selectionSort(array){
+		for(var i =0; i<array.length; i++){
+			var min =i ; 
+			for(var j= i+1; j<array.length; j++){
+				if(array[j] < array[min]){
+					min = j;
+				}
+			}
+			if(min !== i){
+				swap(array, min,i);
+
+			}
+		}
+		return array;
+
+		}
+    
+    // swap method
+	function swap(array,index1,index2){
+		var temp;
+		temp = array[index1];
+		array[index1] = array[index2];
+		array[index2] = temp;
+	}
+
+	var result = selectionSort([20,3,2,8,9,1,0,7]);
+	console.log(result);
+</script>
+</body>
+</html>

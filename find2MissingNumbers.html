@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Find two missing numbers</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Find two missing numbers in an array
+	// Solution: Find total sum by using formula: n(n+1)/2
+	// Find sum of elements in given array
+	// sum of missing numbers = total sum-given array sum
+	// take the average as: dum of missing numbers/2
+	// find sum of numbers before average as total range and find sum of numbers before average in the given array
+	// total sum before average - sum befor average in given array
+	// do the same with numbers after array
+	// Solution 2: You can also do the same procedure using XOR
+
+	function findMissing(array, len){
+		var n = len+2;
+		var RangeSum = n*(n+1)/2 ;
+		var ArraySum = 0;
+		for(var i=0; i<len; i++){
+			ArraySum = ArraySum + array[i];
+		}
+		var missingSum = RangeSum - ArraySum;
+		var average = parseInt(missingSum/2);
+		var RangeSumBeforeAverage=0;
+		var ArraysumBeforeAverage=0;
+		for(j=0; j<=average;j++){
+			RangeSumBeforeAverage = RangeSumBeforeAverage+j;
+		}
+		var i=0;
+		while(array[i]<=average){
+			ArraysumBeforeAverage = ArraysumBeforeAverage+array[i];
+			i++;
+		}
+		var missingNumber1 = RangeSumBeforeAverage - ArraysumBeforeAverage;
+
+		var RangeSumAfterAverage=0;
+		var ArraysumAfterAverage=0;
+		for(j=n; j>average;j--){
+			RangeSumAfterAverage = RangeSumAfterAverage+j;
+		}
+		var k=len-1;
+		while(array[k]>average){
+			ArraysumAfterAverage = ArraysumAfterAverage+array[k];
+			k--;
+		}
+		var missingNumber2 = RangeSumAfterAverage - ArraysumAfterAverage;
+		console.log("First missing number : " + missingNumber1);
+		console.log("Second missing number : " +missingNumber2);
+
+
+	}
+	var array = [2,3,5];
+	var len = array.length;
+	findMissing(array,len);
+
+</script>
+</body>
+</html>

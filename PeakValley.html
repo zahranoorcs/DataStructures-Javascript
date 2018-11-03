@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Arrange a sorted array as alternatives of peak and valley</title>
+</head>
+<body>
+<script type="text/javascript">
+	function reArrange(array, len){
+
+		for(var i=1; i<n-1; i+=2){
+			var maxIndex = findMax(array,i);
+            //swap
+            var temp = array[maxIndex];
+            array[maxIndex] = array[i];
+            array[i] = temp;
+		}
+		return array;
+     
+	}
+
+	function findMax(array, i){
+		var maxVal = Math.max(array[i-1],Math.max(array[i],array[i+1]));
+		var maxValIndex = array.indexOf(maxVal);
+		return maxValIndex;
+	}
+    
+	var array = [1,3,5,5,7,9,13,15,20];
+	var n = array.length;
+	var result = reArrange(array, n);
+	console.log(result);
+</script>
+</body>
+</html>

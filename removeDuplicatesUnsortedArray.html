@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Remove duplicates from unsorted array using Hasing</title>
+</head>
+<body>
+<script type="text/javascript">
+	
+	// Remove duplicates from unsorted array using hasing. Here we have used auxiliary space (temp array) but you can also use the same array.
+	function removeDuplicates(array, len){
+		var map={};
+		var temp=[];
+		var j=0;
+		for(var i=0; i<len; i++){
+			if(map[array[i]]==undefined){
+				map[array[i]]=1;
+				temp[j]=array[i];
+				j++;
+			}
+		}
+		return temp;
+	}
+	var array=[1,2,2,2,3,3,3,3,3,3,4,5,6,7,8,9,9,9];
+	var n = array.length;
+	var result=removeDuplicates(array, n);
+	console.log(result);
+</script>
+</body>
+</html>

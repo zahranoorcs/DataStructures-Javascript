@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reverse an array without affecting special characters.</title>
+</head>
+<body>
+	<div id="p5"></div>
+	<script type="text/javascript">
+
+	//Checks if letter passed is alphabet 
+	
+	function isAlphabet(letter){
+	    if ((letter===1)||(letter.match(/^[a-zA-Z]+$/))){
+	    	return true;
+	    }
+	    return false;
+	}
+	
+	function swap(splittedArray, low, high){
+		var temp;
+		temp = splittedArray[low];
+		splittedArray[low] = splittedArray[high];
+		splittedArray[high] = temp;
+		return splittedArray;
+	}
+
+	function reverse(string){
+		var splittedArray =  string.split("");
+		// console.log(splittedArray);
+		var low = 0;
+		var high = splittedArray.length-1;
+
+		while(low < high){
+
+			if(!isAlphabet(splittedArray[low])){
+				low++;
+			}
+			else if(!isAlphabet(splittedArray[high])){
+				high--;
+			}
+			else{
+				swap(splittedArray, low, high);
+				low++;
+				high--;
+			}
+		}
+		return splittedArray;
+	}
+
+
+	    var result = reverse("ab@cd!ef$");
+	    console.log(result.join(""));
+
+
+	</script>
+
+</body>
+</html>

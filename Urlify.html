@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Urlify</title>
+</head>
+<body>
+     <!-- Write a method to replace all spaces in a string with '%20'. You may assume that the string has sufficient space at the end 
+	 to hold the additional characters and that you are given the true length of the string. 
+	 Example: "Mr John Smith    " trueLength=13
+	 Output:  "Mr%20John%20Smith%20"
+	  -->
+	  <script type="text/javascript">
+	  	function urlify(origstring){
+	  		var string = origstring.split('');
+	  		var spaceCount=0;
+	  		for(var i=0; i<=trueLength;i++){
+	  			if(string[i]==" "){
+	  				spaceCount = spaceCount+1;
+	  			}
+	  		}
+	  		var index = trueLength + (spaceCount*2);
+	  		for(var i=trueLength; i>=0; i--){
+	  			if(string[i]==" "){
+	  				string[index]='0';
+	  				string[index-1]='2';
+	  				string[index-2]= '%';
+	  				index = index-3;
+	  			}
+	  			else{
+	  				string[index]=string[i];
+	  				index = index-1;
+
+	  			}
+	  		}
+	  		 return string.join('');
+
+	  	}
+	  	var trueLength = 13;
+	  	var result = urlify("Mr John Smith         ");
+	  	console.log(result);
+		// In JS it can be done by using the replace method as:  
+	  // var string = "Mr John Smith ";
+	  // var result=string.replace(/\s/g,'%20');
+	  // console.log(result);
+	  </script>
+</body>
+</html>

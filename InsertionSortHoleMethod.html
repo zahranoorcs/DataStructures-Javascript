@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Insertion sort hole method</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function insertionsort(array){
+			for(var i=1; i<array.length; i++){
+			var value = array[i];
+			var j =i;
+			while(value<array[j-1]){
+				array[j]=array[j-1];
+				j--;
+			}
+			array[j] = value;
+		}
+		return array;	
+		}
+		
+		var result = insertionsort([7,6,5,4,3,2]);
+		console.log(result);
+	</script>
+
+</body>
+</html>

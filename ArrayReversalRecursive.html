@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array Reversal swapping by recurring method</title>
+</head>
+<body>
+<script type="text/javascript">
+	function reverse(array, low, high){
+		if(low >=high){
+			return array;
+		}
+		var SwappedArray = swap(array, low, high);
+		return reverse(SwappedArray, low+1, high-1);
+	}
+	function swap(array, low, high){
+		var temp;
+		temp = array[low];
+		array[low] = array[high];
+		array[high] = temp;
+		return array;
+	}
+
+	var result = reverse([1,2,3,4,5],0, 4);
+	console.log(result);
+</script>
+</body>
+</html>

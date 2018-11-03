@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Merge sort(A Divide and Conquer Technique)</title>
+</head>
+<body>
+	<script type="text/javascript">
+function mergeSort(data)
+{
+    if(data.length == 1 ) return data;
+  
+    var mid = data.length / 2;
+    var left = data.slice(0, mid);
+    var right = data.slice(mid);
+  
+    left = mergeSort(left);
+    right = mergeSort(right);
+      
+    return merge(left, right);
+}
+  
+function merge(left, right)
+{
+    var result=[];
+    var leftIndex=0;
+    var rightIndex=0;
+  
+    while(leftIndex<left.length && rightIndex<right.length)
+    {
+        if(left[leftIndex]>right[rightIndex])
+        {
+  
+            result.push(right[rightIndex]);
+            rightIndex++;
+        }
+        else
+        {
+            result.push(left[leftIndex]);
+            leftIndex++;
+        }
+    }
+    while(leftIndex<left.length)
+    {
+        result.push(left[leftIndex]);
+        leftIndex++;
+    }
+    while(rightIndex<right.length)
+    {
+        result.push(right[rightIndex]);
+        rightIndex++;
+    }
+    return result;
+}
+var sortedArray = mergeSort([2, 5, 1, 3, 7, 2, 3, 8, 6, 3]);
+console.log(sortedArray);
+	</script>
+
+</body>
+</html>

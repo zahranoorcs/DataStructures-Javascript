@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Find the number occuring odd number of times(Naive Method)</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Find the number occuring odd number of times(Naive Method)
+	// Time Complexity:O(n^2)
+	function oddOccurance(array){
+		for(var i=0; i<array.length-1 ; i++){
+			var count = 0;
+			for(var j = 0; j<array.length; j++){
+				if(array[i]==array[j]){
+					count++;
+				}
+			}
+			
+			if((count%2) != 0){
+				return array[i];
+			}
+		}
+	}
+	var result=oddOccurance([1,1,2,3,2,3,3]);
+	console.log(result);
+</script>
+</body>
+</html>

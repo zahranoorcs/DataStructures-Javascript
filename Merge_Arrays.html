@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Merge two sorted arrays</title>
+</head>
+<body>
+<script type="text/javascript">
+// Merge two sorted arrays A and B, where A has large enough buffer at the end to store array B.
+//Time commplexity = O(A+B)
+
+function mergeArrays(A, B){
+	var lengthA = A.length;
+	var lengthB = B.length; 
+	var lengthAend = lengthA - lengthB;
+	var i = lengthB-1;
+	var k = lengthA-1;
+	var j = lengthAend-1;
+	while(i>=0 && j>=0){
+		if(A[i]<B[j]){
+			A[k] = B[j];
+			j--;
+			k--;
+		}
+		else if(A[i]>B[j]){
+			A[k]=A[i];
+			i--;
+			k--;
+		}
+	}
+
+	while(i>=0){
+		A[k]=A[i];
+		i--;
+		k--;
+	}
+	while(j>=0){
+		A[k]=B[j];
+		j--;
+		k--;
+	}
+
+	return A;
+}
+
+var result = mergeArrays([1,4,8,,,,],[2,5,6]);
+console.log(result);
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Insertion Sort by Splice method.</title>
+</head>
+<body>
+<script type="text/javascript">
+	function insertionSort(array){
+		for(var i=1; i<array.length;i++){
+			for(var j = 0; j<i; j++ ){
+				if(array[i]<array[j]){
+					var temp = array.splice(i,1);
+					array.splice(j,0,temp[0]);
+				}
+			}
+		}
+		return array;
+	}
+	var sortedArray = insertionSort([13,9,2,16,8,6,11]);
+	console.log(sortedArray);
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Route between nodes</title>
+</head>
+<body>
+<script type="text/javascript">
+// Route between Nodes: Given a directed graph, design an algorithm to find out whether there is a route between two nodes.
+// For this we first need a Graoh
+
+	// Graph Constructor
+	function Graph(){
+		this.vertices=[];
+		this.numOfVertices=0;
+		this.numOfEdges=0;
+		this.edges=[];
+	}
+	// Method to add a vertex
+	Graph.prototype.addVertex = function(vertex){
+		this.vertices.push(vertex);
+		this.numOfVertices++;
+		this.edges[vertex]=[]; //important step
+	}
+	// Method to add an Edge
+	Graph.prototype.addEdge = function(vertex1, vertex2){
+		this.edges[vertex1].push(vertex2);
+		this.edges[vertex2].push(vertex1);
+		this.numOfEdges++;
+	}
+	// Method to remove vertex
+	Graph.prototype.removeVertex = function(vertex){
+		var index = this.vertices.indexOf(vertex);
+		if(index != undefined){
+			this.vertices.splice(index,1);
+		}
+		this.numOfVertices--;
+		
+		while(this.edges[vertex]!=0){
+			var adjacentElem = this.edges[vertex].pop();
+			this.removeEdge(adjacentElem, vertex)
+		}
+	}
+	Graph.prototype.removeEdge = function(v1, v2){
+		var index1 = this.edges[v1] ? this.edges[v1].indexOf(v2) : -1;
+		var index2 = this.edges[v2] ? this.edges[v2].indexOf(v1) : -1;
+		if(~index1){
+			this.edges[v1].splice(index1,1);
+		}
+		if(~index2){
+			this.edges[v2].splice(index2,1);
+		}
+		this.numOfEdges--;
+	}
+	// Simple DFS Traversal:
+
+	// Graph.prototype.dfsTraversal = function(startingNode){
+	// 	var visited = [];
+	// 	for(var i=0; i<this.numOfVertices; i++){
+	// 		visited[i]=0;
+	// 	}
+	// 	this.dfsUtil(startingNode, visited);
+	// }
+	// var dfsArray=[];
+	// Graph.prototype.dfsUtil=function(vertex, visited){
+	// 	visited[vertex] = 1;
+	// 	console.log(vertex);
+	// 	dfsArray.push(vertex);
+	// 	var neighbours = this.edges[vertex];
+	// 	for(var i=0; i<neighbours.length; i++){
+	// 		if(!visited[neighbours[i]]){
+	// 			this.dfsUtil(neighbours[i],visited);
+	// 		}
+	// 	}
+	// 	return dfsArray;
+	// }
+	
+
+   // Testing if there is path between two vertices of a graph using DFS
+	Graph.prototype.dfsTraversal = function(vertex1,vertex2){
+		var visited = [];
+		for(var i=0; i<this.numOfVertices; i++){
+			visited[i]=0;
+		}
+		return this.dfsUtil(vertex1, vertex2, visited);
+	}
+
+	Graph.prototype.dfsUtil=function(vertexSource, vertexDest, visited){
+		visited[vertexSource] = 1;
+		console.log(vertexSource);
+		
+		var neighbours = this.edges[vertexSource];
+		for(var i=0; i<neighbours.length; i++){
+			if(neighbours[i]==vertexDest){
+				return true;
+			}
+			else{
+				if(!visited[neighbours[i]]){
+					this.dfsUtil(neighbours[i], vertexDest, visited);
+				}
+			}
+			
+		}
+	}
+
+    var graph = new Graph();
+	graph.addVertex(2);
+	graph.addVertex(3);
+	graph.addVertex(4);
+	graph.addVertex(5);
+	graph.addEdge(2,3);
+	graph.addEdge(2,4);
+	graph.addEdge(2,5);
+	graph.addEdge(4,5);
+	graph.addEdge(4,3);
+	// graph.removeVertex(2);
+	// graph.DFSTraversal(3);
+	console.log("DFS Traversal:");
+	var result = graph.dfsTraversal(2,5);
+	console.log(result);
+	
+
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Is balanced</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Implement a function to check if a tree is balanced
+	// A Binary tree is called a height balanced Binary Tree if it has following properties: 
+	// For all nodes of the tree, the absolute difference between the heights of left subtree and right subtree is not greater than 1.
+
+	// Binary search tree constructor
+	function BST(){
+		this.root=null;
+	}
+	// New node constructor
+	function Node(value){
+		this.data = value;
+		this.left=null;
+		this.right=null;
+	}
+	//Insertion
+	BST.prototype.insert=function(value){
+		var current = this.root;
+		var node = new Node(value);
+		if(current==null){
+			this.root = node;
+		}
+		else{
+			while(current){
+
+				if(value < current.data){
+					if(current.left==null){
+						current.left=node;
+						break;
+					}
+					current=current.left;
+				}
+			else if(value > current.data){
+				if(current.right==null){
+					current.right=node;
+					break;
+				}
+				current=current.right;
+			}
+			else if(value==current.data){
+				return "node already exists";
+			}
+			}
+			
+		}
+	}
+	BST.prototype.isBalanced = function(node){
+		if(node==null){
+			return 0;
+		}
+		var leftHeight = this.isBalanced(node.left);
+		if(leftHeight==-1){
+			return -1;
+		}
+
+		var rightHeight = this.isBalanced(node.right);
+		if(rightHeight==-1){
+			return -1;
+		}
+		if(Math.abs(leftHeight-rightHeight)>1){
+			return -1;
+		}
+
+		return (1+Math.max(leftHeight, rightHeight));
+	}
+
+	var bst = new BST();
+	bst.insert(30);
+	bst.insert(10);
+	bst.insert(50);
+	bst.insert(15);
+	// uncomment the following to see the result in the console.
+	// bst.insert(25);
+	// bst.insert(45);
+	// bst.insert(65);
+	// bst.insert(75);
+	// bst.insert(85);
+	// bst.insert(15);
+	bst.insert(5);
+	var height = bst.isBalanced(bst.root);
+	console.log(height);
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Froup Anagrams</title>
+</head>
+<body>
+<script type="text/javascript">
+	// Write a method to sort an array of strings so that all anagrams are next to each other.
+	// Two strings are anagrams if they have exact same characters e.g (eat and tea), (geeks, keegs and skeeg).
+
+function groupAnagrams(){
+var map ={};
+for(var i=0; i<array.length; i++){
+	var sortedWord = array[i].split('').sort().join('');
+	if(map[sortedWord]==undefined){
+		map[sortedWord] = [];
+	}
+		map[sortedWord].push(array[i]);	
+}
+return map;
+
+}
+var array = ["aet","geek","eat","tea","keeg"];
+var result = groupAnagrams(array);
+console.log(result);
+
+</script>
+</body>
+</html>

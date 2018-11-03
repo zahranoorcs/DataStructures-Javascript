@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Check if two strings are Anagrams using Hashing</title>
+</head>
+<body>
+<script type="text/javascript">
+	function isAnagram(str1, str2){
+		if(str1.length !== str2.length){
+			return false;
+		}
+		var map={};
+		for(var i=0; i<str1.length; i++){
+			if(map[str1[i]]==undefined){
+				map[str1[i]]=1;
+			}
+			else{
+				map[str1[i]] = map[str1[i]]+1;
+			}
+		}
+		for(var i=0; i< str2.length; i++){
+			if(map[str2[i]]==undefined){
+				return false;
+			}
+			else{
+				map[str2[i]]=map[str2[i]]-1;
+				if(map[str2[i]]==0){
+				 delete map[str2[i]];	
+				}
+				
+			}
+
+			
+		}
+		
+		return true;
+    
+	}
+
+
+	var string1 = "eat";
+	var string2 = "tea";
+	var result = isAnagram(string1,string2);
+	console.log(result);
+</script>
+</body>
+</html>

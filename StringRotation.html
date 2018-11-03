@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>tring Rotation</title>
+</head>
+<body>
+	<!-- Assume you have a method isSubString which checks if one word is a substring of another. Given two strings s1
+	     and s2, write code to check if s2 is a rotation of s1 using only one call to isSubString(e.g "waterbottle" is a rotation of "erbottlewat") -->
+	 <script type="text/javascript">
+	 	function isRotation(string1, string2){
+		 	var result = string1.includes(string2);
+		 	console.log(result);
+	 	}
+	 	var s1="waterbottle";
+	 	var s2="erbottlewat";
+	 	var s1s1 = s1+s1;
+	 	
+
+	 	isRotation(s1s1,s2);
+	 </script>
+
+</body>
+</html>

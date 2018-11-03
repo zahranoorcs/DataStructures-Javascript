@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Recursive Bubble Sort</title>
+</head>
+<body>
+<script type="text/javascript">
+	function bubbleSort(array, len){
+		// exit statetemnt
+		if(len < 2){
+			return array;
+		}
+		for(var i=0; i<len-1; i++){
+			if(array[i]>array[i+1]){
+				swap(array, i, i+1);
+			}
+		}
+		return bubbleSort(array, len-1);
+	}
+	// Swap Method
+	function swap(array, index1, index2){
+		var temp = array[index1];
+		array[index1] = array[index2];
+		array[index2] = temp;
+		return array;
+	}
+	var array = [50, 40, 30, 20, 10];
+	var n = array.length;
+	var result = bubbleSort(array, n);
+	console.log(result);
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inorder Successor</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// Write a program to find inorder successor in binary search tree
+		function BST(){
+		this.root=null;
+	}
+	// New node constructor
+	function Node(value){
+		this.data = value;
+		this.left=null;
+		this.right=null;
+	}
+	//Insertion
+	BST.prototype.insert=function(value){
+		var current = this.root;
+		var node = new Node(value);
+		if(current==null){
+			this.root = node;
+		}
+		else{
+			while(current){
+
+				if(value < current.data){
+					if(current.left==null){
+						current.left=node;
+						break;
+					}
+					current=current.left;
+				}
+			else if(value > current.data){
+				if(current.right==null){
+					current.right=node;
+					break;
+				}
+				current=current.right;
+			}
+			else if(value==current.data){
+				return "node already exists";
+			}
+			}
+			
+		}
+	}
+	//Inorder traversal (I have added this function for your ease to double check the inorder successor is right or not. You can compare both in console.)
+	var InorderArray=[];
+	BST.prototype.inorder = function(node){
+		if(node.left){
+			this.inorder(node.left);
+		}
+		InorderArray.push(node.data);
+		// console.log(node.data);
+		if(node.right){
+			this.inorder(node.right);
+		}
+		return InorderArray;
+	}
+
+	//Find minimum node
+	BST.prototype.minNode = function(node){
+		while(node.left){
+			node = node.left;
+		}
+		return node;
+	}
+	// Method for finding Inorder Successor
+	// In order to find Inorder successor, We have to take care of two cases:
+	// Case 1: If the node(whose Inorder successor you have to find) has right child. If it has right child, then the inorder successor will be the minimum node in the right subtree
+	// Case 2: If the node does not have right node, then you have to find its deepest ancestorand then you have to check whether you are going up from left side or right side. If you are going up from left side then you can easily keep track of the element above it which will be the successor. But if you are coming up from right side then then this successor is already visited and you have to go one step above.
+
+
+	BST.prototype.inorderSuccessor = function(root, node){
+		if(node==null){
+			return false;
+		}
+		// Case 1: If node has a right child
+		if(node.right!=null){
+			var minimumNode = this.minNode(node.right);
+			return minimumNode.data;
+		}
+
+		else if(node.right == null){
+			var ancestor = root;
+			var successor = null;
+			while(ancestor.data!=node.data){
+				if(node.data < ancestor.data){
+					successor=ancestor;
+					ancestor=ancestor.left;
+				}
+				else{
+					ancestor=ancestor.right;
+				}
+				
+			}
+
+		}
+		return successor.data;
+	}
+
+	var bst = new BST();
+	bst.insert(30);
+	bst.insert(10);
+	bst.insert(50);
+	bst.insert(15);
+	bst.insert(5);
+	console.log("Inorder Traversal:")
+	var result = bst.inorder(bst.root);
+	console.log(InorderArray);
+	var inorderSuccessor = bst.inorderSuccessor(bst.root, bst.root);
+	console.log(inorderSuccessor);
+	
+	</script>
+
+</body>
+</html>
